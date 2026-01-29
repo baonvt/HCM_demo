@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tư Tưởng Hồ Chí Minh về Chủ Nghĩa Xã Hội</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Playfair+Display:wght@700;900&family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d41f2e;
+            --secondary: #ffd700;
+            --dark: #1a1a1a;
+            --light: #f8f4ed;
+            --accent: #8b4513;
+            --shadow: rgba(212, 31, 46, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Decorative Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(212, 31, 46, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+                repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(212, 31, 46, 0.01) 100px, rgba(212, 31, 46, 0.01) 101px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '★';
+            position: absolute;
+            font-size: 30rem;
+            color: rgba(212, 31, 46, 0.03);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(15deg);
+            z-index: 0;
+            font-family: 'Philosopher', sans-serif;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 1200px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-shadow: 3px 3px 0 rgba(255, 215, 0, 0.3);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-divider {
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+            margin: 2rem auto;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(248, 244, 237, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 0.8rem 2rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-family: 'Philosopher', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--primary);
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .nav-btn:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+
+        .nav-btn:hover {
+            color: var(--light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Section Styles */
+        .section {
+            display: none;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 900;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary), var(--secondary));
+        }
+
+        .section-intro {
+            font-size: 1.3rem;
+            color: var(--accent);
+            max-width: 800px;
+            margin: 2rem auto 0;
+            line-height: 1.8;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Force 2-column layout for the overview cards (1 & 2 on first row, 3 & 4 on second row)
+           while preserving the default auto-fit behavior elsewhere. */
+        #overview .cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .card {
+            background: white;
+            border-left: 6px solid var(--primary);
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px var(--shadow);
+        }
+
+        .card-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--secondary);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0 rgba(212, 31, 46, 0.2);
+        }
+
+        .card-title {
+            font-family: 'Philosopher', sans-serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .card-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary), var(--primary));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 2rem;
+            box-shadow: 0 8px 30px var(--shadow);
+            position: relative;
+            border-top: 4px solid var(--primary);
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            font-family: 'Philosopher', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px var(--shadow);
+            white-space: nowrap;
+        }
+
+        .timeline-title {
+            font-family: 'Philosopher', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .timeline-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            border-left: 8px solid var(--secondary);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 10rem;
+            position: absolute;
+            top: -2rem;
+            left: 1rem;
+            color: rgba(255, 255, 255, 0.2);
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-size: 1.4rem;
+            font-style: italic;
+            line-height: 1.9;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1rem;
+        }
+
+        .quote-author {
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: 'Philosopher', sans-serif;
+        }
+
+        /* Highlights */
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .highlight-item {
+            background: white;
+            padding: 2rem;
+            border-top: 4px solid var(--secondary);
+            box-shadow: 0 6px 25px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px var(--shadow);
+        }
+
+        .highlight-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-title {
+            font-family: 'Philosopher', sans-serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .highlight-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Feature List */
+        .feature-list {
+            background: white;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px var(--shadow);
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            background: rgba(212, 31, 46, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(212, 31, 46, 0.08);
+            transform: translateX(10px);
+        }
+
+        .feature-item strong {
+            font-family: 'Philosopher', sans-serif;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px var(--shadow);
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                padding-left: 50px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-date {
+                left: 20px;
+                transform: translateX(0);
+            }
+
+            .nav {
+                gap: 0.5rem;
+            }
+
+            .nav-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .card-number {
+                font-size: 3rem;
+            }
+
+            /* Ensure overview cards stack to one column on small screens */
+            #overview .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Special Decorative Elements */
+        .star-decoration {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            display: inline-block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+        }
+
+        .content-block {
+            background: white;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 30px var(--shadow);
+            border-left: 6px solid var(--secondary);
+        }
+
+        .content-block h3 {
+            font-family: 'Philosopher', sans-serif;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .content-block p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .content-block ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-block li {
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .content-block li::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Tư Tưởng Hồ Chí Minh</h1>
+            <div class="hero-divider"></div>
+            <p class="hero-subtitle">VỀ CHỦ NGHĨA XÃ HỘI VIỆT NAM</p>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav">
+            <button class="nav-btn active" onclick="showSection('overview')">Tổng Quan</button>
+            <button class="nav-btn" onclick="showSection('definition')">Định Nghĩa CNXH</button>
+            <button class="nav-btn" onclick="showSection('transition')">Con Đường Quá Độ</button>
+            <button class="nav-btn" onclick="showSection('period1')">Thời Kỳ 1920-1945</button>
+            <button class="nav-btn" onclick="showSection('period2')">Thời Kỳ 1945-1954</button>
+            <button class="nav-btn" onclick="showSection('period3')">Thời Kỳ 1954-1969</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Overview Section -->
+        <section id="overview" class="section active">
+            <div class="section-header">
+                <h2 class="section-title">Tổng Quan Tư Tưởng</h2>
+                <p class="section-intro">
+                    Tư tưởng Hồ Chí Minh về chủ nghĩa xã hội được hình thành từ quá trình kết hợp chủ nghĩa yêu nước với chủ nghĩa Mác-Lênin, đặt cách mạng Việt Nam vào quỹ đạo cách mạng vô sản.
+                </p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-number">01</div>
+                    <h3 class="card-title">Việt Nam Hóa Chủ Nghĩa Xã Hội</h3>
+                    <p class="card-content">
+                        Chủ nghĩa xã hội theo Chủ tịch Hồ Chí Minh thống nhất về bản chất với lý luận của chủ nghĩa xã hội khoa học, nhưng được Việt Nam hóa, phù hợp với thực tiễn Việt Nam.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">02</div>
+                    <h3 class="card-title">Phong Phú và Đa Dạng</h3>
+                    <p class="card-content">
+                        Tư tưởng của Người về chủ nghĩa xã hội rất phong phú và đa dạng, không cứng nhắc mà linh hoạt thích ứng với từng giai đoạn lịch sử cụ thể.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">03</div>
+                    <h3 class="card-title">Gần Gũi Với Đời Sống</h3>
+                    <p class="card-content">
+                        Chủ nghĩa xã hội mà Chủ tịch Hồ Chí Minh nói tới là chủ nghĩa xã hội thực tế, gần gũi với đời sống, vì con người, do con người và cho con người.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">04</div>
+                    <h3 class="card-title">Kết Tinh Giá Trị Nhân Văn</h3>
+                    <p class="card-content">
+                        Dựa trên nền tảng lý luận Mác-Lênin, thấm nhuần truyền thống văn hóa dân tộc và kết tinh những giá trị nhân văn của văn hóa nhân loại.
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3>Con Đường Hình Thành Tư Tưởng</h3>
+                <p>
+                    Con đường hình thành tư tưởng Hồ Chí Minh về chủ nghĩa xã hội ở Việt Nam là trong quá trình nhận thức và chuyển biến tư tưởng từ chủ nghĩa yêu nước đến với chủ nghĩa Mác-Lênin.
+                </p>
+                <p>
+                    Chủ tịch Hồ Chí Minh đã tiếp cận chủ nghĩa xã hội từ ba phương diện chính:
+                </p>
+                <ul>
+                    <li>Từ lập trường yêu nước và khát vọng giải phóng dân tộc</li>
+                    <li>Từ phương diện đạo đức</li>
+                    <li>Từ truyền thống lịch sử, văn hóa và con người Việt Nam</li>
+                </ul>
+                <p>
+                    Chính từ các cách tiếp cận này đã tạo nên bản sắc đặc thù về bản chất và mục tiêu của chủ nghĩa xã hội trong tư tưởng Hồ Chí Minh.
+                </p>
+            </div>
+        </section>
+
+        <!-- Definition Section -->
+        <section id="definition" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Chủ Nghĩa Xã Hội Là Gì?</h2>
+                <p class="section-intro">
+                    Chủ tịch Hồ Chí Minh đã giải thích chủ nghĩa xã hội một cách vắn tắt, mộc mạc, gần gũi với đời sống nhân dân.
+                </p>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">
+                    "Chủ nghĩa xã hội là làm sao cho dân giàu nước mạnh"
+                </p>
+                <p class="quote-author">— Chủ tịch Hồ Chí Minh</p>
+            </div>
+
+            <div class="highlight-grid">
+                <div class="highlight-item">
+                    <div class="highlight-icon">🍚</div>
+                    <h3 class="highlight-title">Ăn No Mặc Ấm</h3>
+                    <p class="highlight-text">
+                        "Chủ nghĩa xã hội là gì? Là mọi người ăn no mặc ấm, sung sướng, tự do."
+                    </p>
+                </div>
+
+                <div class="highlight-item">
+                    <div class="highlight-icon">⚖️</div>
+                    <h3 class="highlight-title">Công Bằng Hợp Lý</h3>
+                    <p class="highlight-text">
+                        "Chủ nghĩa xã hội là công bằng hợp lý: Làm nhiều hưởng nhiều, làm ít hưởng ít, không làm thì không hưởng."
+                    </p>
+                </div>
+
+                <div class="highlight-item">
+                    <div class="highlight-icon">💼</div>
+                    <h3 class="highlight-title">Có Việc Làm</h3>
+                    <p class="highlight-text">
+                        "Chủ nghĩa xã hội là làm cho nhân dân lao động thoát nạn bần cùng, làm cho mọi người có công ăn việc làm."
+                    </p>
+                </div>
+
+                <div class="highlight-item">
+                    <div class="highlight-icon">🏠</div>
+                    <h3 class="highlight-title">Nhà Ở Tử Tế</h3>
+                    <p class="highlight-text">
+                        "Chủ nghĩa xã hội là mọi người dân được áo ấm cơm no, nhà ở tử tế, được học hành."
+                    </p>
+                </div>
+
+                <div class="highlight-item">
+                    <div class="highlight-icon">🤝</div>
+                    <h3 class="highlight-title">Chăm Sóc Xã Hội</h3>
+                    <p class="highlight-text">
+                        "Những người già yếu hoặc tàn tật sẽ được Nhà nước giúp đỡ chăm nom."
+                    </p>
+                </div>
+
+                <div class="highlight-item">
+                    <div class="highlight-icon">🌟</div>
+                    <h3 class="highlight-title">Đời Sống Hạnh Phúc</h3>
+                    <p class="highlight-text">
+                        "Chủ nghĩa xã hội là tất cả mọi người các dân tộc ngày càng ấm no, con cháu chúng ta ngày càng sung sướng."
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3>Bản Chất Chủ Nghĩa Xã Hội Việt Nam</h3>
+                <p>
+                    Chủ nghĩa xã hội ở Việt Nam, theo Người, là xã hội do nhân dân lao động làm chủ, mọi quyền lực đều thuộc về nhân dân, là xã hội dân giàu, nước mạnh.
+                </p>
+            </div>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>Nhân dân làm chủ:</strong> Một xã hội dân chủ, do nhân dân làm chủ; xây dựng nhà nước của dân, do dân, vì dân và có hiệu lực pháp lý mạnh mẽ.
+                </div>
+                <div class="feature-item">
+                    <strong>Dân giàu nước mạnh:</strong> Xã hội dân giàu, nước mạnh, nền kinh tế phát triển cao với chế độ công hữu về tư liệu sản xuất chủ yếu.
+                </div>
+                <div class="feature-item">
+                    <strong>Văn hóa và đạo đức:</strong> Một xã hội phát triển cao về văn hóa và đạo đức con người.
+                </div>
+                <div class="feature-item">
+                    <strong>Công bằng hợp lý:</strong> Một xã hội được xây dựng theo nguyên tắc công bằng, hợp lý.
+                </div>
+                <div class="feature-item">
+                    <strong>Sự phát triển hài hòa:</strong> Nơi kết hợp hài hòa giữa lợi ích cá nhân với tập thể và lợi ích xã hội; nơi giải quyết thỏa đáng giữa cống hiến và hưởng thụ.
+                </div>
+                <div class="feature-item">
+                    <strong>Tự do phát triển:</strong> Nơi mà sự phát triển tự do của mỗi người là điều kiện cho sự phát triển tự do của mọi người.
+                </div>
+                <div class="feature-item">
+                    <strong>Đoàn kết các dân tộc:</strong> Các dân tộc đều bình đẳng, đoàn kết và giúp đỡ nhau cùng tiến bộ.
+                </div>
+                <div class="feature-item">
+                    <strong>Hòa bình hữu nghị:</strong> Có mối quan hệ hòa bình, hữu nghị, hợp tác với các nước trên thế giới.
+                </div>
+            </div>
+        </section>
+
+        <!-- Transition Section -->
+        <section id="transition" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Con Đường Quá Độ</h2>
+                <p class="section-intro">
+                    Đặc điểm to nhất của Việt Nam trong thời kỳ quá độ là từ một nước nông nghiệp lạc hậu tiến thẳng lên chủ nghĩa xã hội, không phải kinh qua giai đoạn phát triển tư bản chủ nghĩa.
+                </p>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">
+                    "Đặc điểm to nhất của ta trong thời kỳ quá độ là từ một nước nông nghiệp lạc hậu tiến thẳng lên chủ nghĩa xã hội không phải kinh qua giai đoạn phát triển tư bản chủ nghĩa"
+                </p>
+                <p class="quote-author">— Chủ tịch Hồ Chí Minh</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Chế Độ Dân Chủ Nhân Dân</h3>
+                <p>
+                    Theo Chủ tịch Hồ Chí Minh, chế độ dân chủ nhân dân không phải là chế độ xã hội chủ nghĩa, song đó là chế độ xã hội hướng tới xã hội chủ nghĩa. Nói cách khác, chế độ xã hội chủ nghĩa ở Việt Nam sẽ ra đời từ chế độ dân chủ nhân dân.
+                </p>
+                <p>
+                    Quan hệ của chế độ dân chủ nhân dân và chế độ xã hội chủ nghĩa trong tư tưởng Hồ Chí Minh là quan hệ giữa hai giai đoạn trong quá trình vận động của xã hội. Chế độ xã hội chủ nghĩa là giai đoạn phát triển cao hơn chế độ dân chủ nhân dân.
+                </p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-number">★</div>
+                    <h3 class="card-title">Mục Tiêu Nhất Quán</h3>
+                    <p class="card-content">
+                        Mục tiêu "không ngừng nâng cao đời sống vật chất và tinh thần của nhân dân" là mục tiêu nhất quán của cách mạng Việt Nam, song ở trình độ phát triển của xã hội Việt Nam, chế độ xã hội có thể thực hiện được mục tiêu ấy trước hết phải là chế độ dân chủ nhân dân.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">★</div>
+                    <h3 class="card-title">Mầm Mống Xã Hội Chủ Nghĩa</h3>
+                    <p class="card-content">
+                        Ở Việt Nam, những mầm mống của chế độ xã hội chủ nghĩa và cộng sản chủ nghĩa sẽ nảy sinh và phát triển trong lòng chế độ dân chủ nhân dân.
+                    </p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">
+                    "Một chế độ này biến đổi thành một chế độ khác là cả một cuộc đấu tranh gay go, kịch liệt và lâu dài giữa cái xấu và cái tốt, giữa cái cũ và cái mới, giữa cái thoái bộ và cái tiến bộ, giữa cái đang suy tàn và cái đang phát triển. Kết quả là cái mới, cái đang tiến bộ nhất định thắng"
+                </p>
+                <p class="quote-author">— Chủ tịch Hồ Chí Minh</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Bước Chuyển Dần Dần</h3>
+                <p>
+                    Theo Người, bước chuyển từ chế độ dân chủ nhân dân lên chế độ xã hội chủ nghĩa là bước chuyển về chất, và chuyển dần dần, "không thể một sớm một chiều".
+                </p>
+                <p>
+                    Xây dựng chế độ dân chủ nhân dân không chỉ là quá trình từng bước xóa bỏ triệt để các tàn tích của chế độ thực dân, phong kiến, mà còn là quá trình từng bước các mầm mống của chủ nghĩa xã hội phát triển.
+                </p>
+                <p>
+                    Rõ ràng, đối với Hồ Chí Minh, xây dựng chế độ dân chủ nhân dân là một tất yếu lịch sử trên con đường đi lên chủ nghĩa xã hội ở Việt Nam.
+                </p>
+            </div>
+        </section>
+
+        <!-- Period 1920-1945 Section -->
+        <section id="period1" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Thời Kỳ 1920-1945</h2>
+                <p class="section-intro">
+                    Thời kỳ hình thành quan điểm về con đường cách mạng vô sản và mục tiêu xã hội cộng sản.
+                </p>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">
+                    "Lúc đầu, chính là chủ nghĩa yêu nước, chứ chưa phải là chủ nghĩa cộng sản đã đưa tôi tin theo Lênin, tin theo Quốc tế thứ ba. Từng bước một, trong cuộc đấu tranh, vừa nghiên cứu lý luận Mác - Lênin, vừa làm công tác thực tế, dần dần tôi hiểu được rằng chỉ có chủ nghĩa xã hội, chủ nghĩa cộng sản mới giải phóng được các dân tộc bị áp bức và những người lao động trên thế giới khỏi ách nô lệ"
+                </p>
+                <p class="quote-author">— Chủ tịch Hồ Chí Minh, Con đường dẫn tôi đến với chủ nghĩa Lênin (1960)</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Từ Chủ Nghĩa Yêu Nước Đến Chủ Nghĩa Cộng Sản</h3>
+                <p>
+                    Sau khi đọc Luận cương của Lênin, trong tư tưởng Hồ Chí Minh đã hình thành nên quan điểm: cách mạng giải phóng dân tộc ở Việt Nam muốn thắng lợi phải đi theo con đường cách mạng vô sản.
+                </p>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">
+                    "Chỉ có giải phóng giai cấp vô sản thì mới giải phóng được dân tộc, cả hai cuộc giải phóng này chỉ có thể là sự nghiệp của chủ nghĩa cộng sản và của cách mạng thế giới"
+                </p>
+                <p class="quote-author">— Chủ tịch Hồ Chí Minh (1923-1924)</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Chánh Cương Vắn Tắt Của Đảng (1930)</h3>
+                <p>
+                    Trong Chánh cương vắn tắt của Đảng (1930), Chủ tịch Hồ Chí Minh đã nêu rõ chủ trương làm tư bản dân quyền cách mạng và thổ địa cách mạng để "đi tới xã hội cộng sản".
+                </p>
+                <p>
+                    Như vậy, theo Người, mục tiêu cao nhất của con đường cách mạng vô sản là "đi tới xã hội cộng sản".
+                </p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3 class="card-title">Phát Hiện Con Đường</h3>
+                    <p class="card-content">
+                        Nguyễn Ái Quốc phát hiện ra đường lối giải phóng dân tộc, đặt cách mạng Việt Nam vào quỹ đạo của cách mạng vô sản, kết hợp chủ nghĩa yêu nước với chủ nghĩa xã hội.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Nghiên Cứu Lý Luận</h3>
+                    <p class="card-content">
+                        Vừa đấu tranh, vừa nghiên cứu lý luận Mác-Lênin, vừa làm công tác thực tế, nhận thức về chủ nghĩa xã hội ngày càng hoàn thiện, sáng tỏ hơn.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Period 1945-1954 Section -->
+        <section id="period2" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Thời Kỳ 1945-1954</h2>
+                <p class="section-intro">
+                    Thời kỳ Cách mạng Tháng Tám thành công và ra đời chế độ dân chủ nhân dân.
+                </p>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">
+                    "Cách mạng là tiêu diệt những cái gì xấu, xây dựng những cái gì tốt. Chúng ta làm cách mạng để tiêu diệt chế độ thực dân, phong kiến, để xây dựng dân chủ mới"
+                </p>
+                <p class="quote-author">— Chủ tịch Hồ Chí Minh</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Chế Độ Dân Chủ Nhân Dân Ra Đời</h3>
+                <p>
+                    Theo Chủ tịch Hồ Chí Minh, thành quả lớn nhất của cuộc cách mạng Tháng Tám là tuyên bố sự ra đời của chế độ xã hội mới - chế độ dân chủ nhân dân.
+                </p>
+                <p>
+                    Khi khẳng định Cách mạng Tháng Tám khai sinh chế độ dân chủ nhân dân, một vấn đề nảy sinh: tại sao sau khi cách mạng thành công lại không bắt tay thực hiện ngay mục tiêu xã hội cộng sản mà lại phải trải qua xây dựng chế độ dân chủ nhân dân?
+                </p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3 class="card-title">Chế Độ Hướng Tới Xã Hội Chủ Nghĩa</h3>
+                    <p class="card-content">
+                        Chế độ dân chủ nhân dân không phải là chế độ xã hội chủ nghĩa, song đó là chế độ xã hội hướng tới xã hội chủ nghĩa. Chế độ xã hội chủ nghĩa ở Việt Nam sẽ ra đời từ chế độ dân chủ nhân dân.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Nhân Dân Làm Chủ</h3>
+                    <p class="card-content">
+                        Từ 1945, Người luôn khẳng định chế độ ta là chế độ dân chủ nhân dân, đặc biệt là về phương diện chế độ chính trị. "Chế độ ta là chế độ dân chủ. Tức là nhân dân làm chủ."
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3>Năm 1954: Bước Vào Thời Kỳ Quá Độ</h3>
+                <p>
+                    Năm 1954, miền Bắc bước vào thời kỳ quá độ đi lên chủ nghĩa xã hội. Tức là bắt tay "xây dựng cơ sở cho chủ nghĩa xã hội, tiến lên thực hiện chủ nghĩa xã hội", song đây là xây dựng cơ sở cho chủ nghĩa xã hội ngay trong lòng chế độ dân chủ nhân dân.
+                </p>
+            </div>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>Tiêu diệt chế độ cũ:</strong> Cách mạng để tiêu diệt chế độ thực dân, phong kiến, xây dựng dân chủ mới.
+                </div>
+                <div class="feature-item">
+                    <strong>Tồn tại hiện thực:</strong> Chế độ dân chủ nhân dân được tuyên bố ra đời và tồn tại hiện thực sau Cách mạng Tháng Tám.
+                </div>
+                <div class="feature-item">
+                    <strong>Nâng cao đời sống:</strong> Mục tiêu "không ngừng nâng cao đời sống vật chất và tinh thần của nhân dân" là mục tiêu nhất quán.
+                </div>
+                <div class="feature-item">
+                    <strong>Phát triển mầm mống:</strong> Những mầm mống của chế độ xã hội chủ nghĩa và cộng sản chủ nghĩa nảy sinh và phát triển trong lòng chế độ dân chủ nhân dân.
+                </div>
+            </div>
+        </section>
+
+        <!-- Period 1954-1969 Section -->
+        <section id="period3" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Thời Kỳ 1954-1969</h2>
+                <p class="section-intro">
+                    Thời kỳ miền Bắc bước vào quá độ lên chủ nghĩa xã hội và Người trực tiếp bàn nhiều về vấn đề này.
+                </p>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">
+                    "Từ khi kháng chiến thắng lợi và hòa bình lập lại, cách mạng Việt Nam đã chuyển sang một giai đoạn mới. Miền Bắc nước ta hoàn toàn giải phóng dưới chế độ dân chủ nhân dân, đã bước vào thời kỳ quá độ tiến lên chủ nghĩa xã hội"
+                </p>
+                <p class="quote-author">— Chủ tịch Hồ Chí Minh</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Tính Tất Yếu Của Con Đường Quá Độ</h3>
+                <p>
+                    Chủ tịch Hồ Chí Minh khẳng định, quá độ lên chủ nghĩa xã hội, bỏ qua giai đoạn tư bản chủ nghĩa là một tất yếu. Tính tất yếu này được luận giải trên ba phương diện chính:
+                </p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-number">01</div>
+                    <h3 class="card-title">Tương Lai Của Loài Người</h3>
+                    <p class="card-content">
+                        "Chế độ xã hội cũng phát triển từ cộng sản nguyên thủy đến chế độ nô lệ, đến chế độ phong kiến, đến chế độ tư bản chủ nghĩa và ngày nay gần một nửa loài người đang tiến lên chế độ xã hội chủ nghĩa và chế độ cộng sản chủ nghĩa. Sự phát triển và tiến bộ đó không ai ngăn cản được."
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">02</div>
+                    <h3 class="card-title">Sự Lựa Chọn Tích Cực</h3>
+                    <p class="card-content">
+                        "Chế độ cộng sản là ai cũng no ấm, sung sướng, tự do; ai cũng thông thái và có đạo đức. Đó là một xã hội tốt đẹp vẻ vang. Trừ những bọn phản động quá sá, thì chắc ai cũng tán thành chế độ cộng sản."
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">03</div>
+                    <h3 class="card-title">Xu Thế Không Thể Đảo Ngược</h3>
+                    <p class="card-content">
+                        Với thắng lợi của Cách mạng Tháng Mười Nga, thời đại quá độ lên chủ nghĩa xã hội đã trở thành xu thế phát triển của lịch sử không thể đảo ngược. Việt Nam có thể tiến lên chủ nghĩa xã hội một cách thắng lợi không phải qua con đường phát triển tư bản chủ nghĩa.
+                    </p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">
+                    "Từ cộng sản nguyên thủy đến chế độ nô lệ, đến chế độ phong kiến, đến chế độ tư bản, đến chủ nghĩa xã hội (cộng sản) - nói chung thì loài người phát triển theo quy luật nhất định như vậy. Nhưng tùy hoàn cảnh, mà các dân tộc phát triển theo con đường khác nhau. Có nước thì đi thẳng đến chủ nghĩa xã hội (cộng sản) như Liên Xô. Có nước thì phải kinh qua chế độ dân chủ mới, rồi tiến lên chủ nghĩa xã hội (cộng sản) - như các nước Đông Âu, Trung Quốc, Việt Nam ta"
+                </p>
+                <p class="quote-author">— Chủ tịch Hồ Chí Minh</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Diễn Văn Khái Mạc Trường Nguyễn Ái Quốc</h3>
+                <p>
+                    Quan điểm của Chủ tịch Hồ Chí Minh về quá độ lên chủ nghĩa xã hội được Người trình bày một cách khái quát nhất trong Diễn văn khái mạc lớp học lý luận khoá I trường Nguyễn Ái Quốc:
+                </p>
+            </div>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>Cuộc biến đổi sâu sắc:</strong> Cuộc cách mạng xã hội chủ nghĩa là một cuộc biến đổi khó khăn nhất và sâu sắc nhất. Phải xây dựng một xã hội hoàn toàn mới xưa nay chưa từng có trong lịch sử dân tộc ta.
+                </div>
+                <div class="feature-item">
+                    <strong>Thay đổi nếp sống:</strong> Phải thay đổi triệt để những nếp sống, thói quen, ý nghĩ và thành kiến có gốc rễ sâu xa hàng ngàn năm.
+                </div>
+                <div class="feature-item">
+                    <strong>Quan hệ sản xuất mới:</strong> Phải thay đổi quan hệ sản xuất cũ, xóa bỏ giai cấp bóc lột, xây dựng quan hệ sản xuất mới không có bóc lột áp bức.
+                </div>
+                <div class="feature-item">
+                    <strong>Công nghiệp hóa:</strong> Phải dần dần biến nước ta từ một nước nông nghiệp lạc hậu thành một nước công nghiệp.
+                </div>
+                <div class="feature-item">
+                    <strong>Tập thể hóa nông nghiệp:</strong> Phải dần dần tập thể hóa nông nghiệp.
+                </div>
+                <div class="feature-item">
+                    <strong>Cải tạo xã hội chủ nghĩa:</strong> Phải tiến hành cải tạo xã hội chủ nghĩa đối với công thương nghiệp tư nhân, đối với thủ công nghiệp.
+                </div>
+                <div class="feature-item">
+                    <strong>Văn hóa và đời sống:</strong> Phải biến một nước dốt nát, cực khổ thành một nước văn hóa cao và đời sống tươi vui hạnh phúc.
+                </div>
+                <div class="feature-item">
+                    <strong>Điều kiện đặc biệt:</strong> Phải tiến hành những nhiệm vụ đó trong những điều kiện đặc biệt của nước ta, nghĩa là trên cơ sở của một xã hội vừa mới thoát khỏi ách thực dân, phong kiến, hết sức lạc hậu và trong hoàn cảnh nước ta đang bị chia cắt làm hai miền.
+                </div>
+                <div class="feature-item">
+                    <strong>Học tập kinh nghiệm:</strong> Phải học tập kinh nghiệm các nước anh em và áp dụng những kinh nghiệm ấy một cách sáng tạo.
+                </div>
+                <div class="feature-item">
+                    <strong>Tu dưỡng lý luận:</strong> Phải nâng cao sự tu dưỡng về chủ nghĩa Mác-Lênin để dùng lập trường, quan điểm, phương pháp chủ nghĩa Mác-Lênin mà tổng kết những kinh nghiệm của Đảng ta, phân tích một cách đúng đắn những đặc điểm của nước ta.
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <p class="quote-text">
+                    "Có như thế, chúng ta mới có thể dần dần hiểu được quy luật phát triển của cách mạng Việt Nam, định ra được những đường lối, phương châm, bước đi cụ thể của cách mạng xã hội chủ nghĩa thích hợp với tình hình nước ta. Như thế là phải học tập lý luận, phải nâng cao trình độ lý luận chung của Đảng, trước hết là của cán bộ cốt cán của Đảng"
+                </p>
+                <p class="quote-author">— Chủ tịch Hồ Chí Minh</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Section Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+
+            // Update nav buttons
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Scroll to top of content
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Scroll to Top Button
+        const scrollTopBtn = document.querySelector('.scroll-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe cards and timeline items
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const highlightItems = document.querySelectorAll('.highlight-item');
+
+            [...cards, ...timelineItems, ...highlightItems].forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+
+        // Add hover effect to cards
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderLeftWidth = '10px';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.borderLeftWidth = '6px';
+            });
+        });
+
+        // Add parallax effect to hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - (scrolled / 600);
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const container = document.querySelector('.container');
+                container.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
