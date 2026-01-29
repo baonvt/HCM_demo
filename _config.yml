@@ -1,0 +1,4 @@
+# Empty Jekyll config to treat all files as static
+exclude: []
+include:
+  - public/hcm1.html
